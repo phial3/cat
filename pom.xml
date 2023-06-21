@@ -9,6 +9,7 @@
 	<description>Central Application Tracking</description>
 	<packaging>pom</packaging>
 	<url>https://github.com/dianping/cat</url>
+
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -16,20 +17,24 @@
 			<distribution>repo,manual</distribution>
 		</license>
 	</licenses>
+
 	<developers>
 		<developer>
 			<name>meituan</name>
-			<email>tech@meituan.com </email>
+			<email>tech@meituan.com</email>
 			<organization>meituan</organization>
 			<url>https://github.com/dianping</url>
 		</developer>
 	</developers>
+
 	<scm>
 		<connection>scm:git:https://github.com/dianping/cat.git</connection>
 		<developerConnection>scm:git:https://github.com/dianping/cat.git</developerConnection>
 		<url>https://github.com/dianping/cat</url>
 		<tag>${project.version}</tag>
 	</scm>
+
+
 	<modules>
 		<module>cat-client</module>
 		<module>cat-core</module>
@@ -38,8 +43,42 @@
 		<module>cat-home</module>
 		<module>cat-alarm</module>
 	</modules>
+
+	<properties>
+		<java.version>8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+		<project.encoding>UTF-8</project.encoding>
+		<maven.compiler.encoding>${project.encoding}</maven.compiler.encoding>
+		<project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
+
+		<deploy.autoRelease>false</deploy.autoRelease>
+
+		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+		<maven-release-plugin.version>3.0.1</maven-release-plugin.version>
+		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<versions-maven-plugin.version>2.16.0</versions-maven-plugin.version>
+		<git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
+		<git-changelog-maven-plugin.version>1.95.2</git-changelog-maven-plugin.version>
+
+		<logback.version>1.4.7</logback.version>
+		<slf4j.version>1.7.36</slf4j.version>
+		<log4j2.version>2.17.2</log4j2.version>
+		<transmittable-thread-local.version>2.13.2</transmittable-thread-local.version>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.unidal.webres/base -->
+			<dependency>
+				<groupId>org.unidal.webres</groupId>
+				<artifactId>base</artifactId>
+				<version>1.2.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>com.dianping.cat</groupId>
 				<artifactId>cat-client</artifactId>
@@ -84,11 +123,6 @@
 				<groupId>org.unidal.framework</groupId>
 				<artifactId>test-framework</artifactId>
 				<version>3.0.3</version>
-			</dependency>
-			<dependency>
-				<groupId>org.unidal.webres</groupId>
-				<artifactId>WebResServer</artifactId>
-				<version>1.2.1</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
@@ -191,13 +225,69 @@
 				<artifactId>freemarker</artifactId>
 				<version>2.3.9</version>
 			</dependency>
+
+
 			<dependency>
-				<groupId>com.mchange.v2</groupId>
-				<artifactId>c3p0</artifactId>
-				<version>0.9.5.1</version>
+				<groupId>com.alibaba</groupId>
+				<artifactId>transmittable-thread-local</artifactId>
+				<version>${transmittable-thread-local.version}</version>
+			</dependency>
+
+			<!-- 使用 Slf4j 日志门面 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<!-- JCL 桥接器，将 commons-logging 的日志输出重定向到 SLF4J -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!-- JUL 桥接器，将 jdk logging 的日志输出重定向到 SLF4J -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!-- 引入log4j2 转换 Slf4j  -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-to-slf4j</artifactId>
+				<version>${log4j2.version}</version>
+			</dependency>
+			<!-- 禁止业务直接使用 log4j2 的 API -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j2.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- 引入实现 Slf4j 的 log4j2 -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j2.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<profiles>
 		<profile>
 			<id>ossrh</id>
@@ -236,9 +326,31 @@
 			</build>
 		</profile>
 	</profiles>
+
+
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+						<encoding>${maven.compiler.encoding}</encoding>
+						<showWarnings>false</showWarnings>
+						<compilerArgs>
+							<arg>-Xlint:all</arg>
+							<arg>-Xlint:-processing</arg>
+							<arg>-parameters</arg>
+						</compilerArgs>
+						<excludes>
+							<exclude>*.gitkeep</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.9</version>
@@ -255,34 +367,6 @@
 							<version>2.9</version>
 						</dependency>
 					</dependencies>
-				</plugin>
-				<plugin>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.9</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<ajdtVersion>none</ajdtVersion>
-						<additionalConfig>
-							<file>
-								<name>.settings/org.eclipse.jdt.core.prefs</name>
-								<content><![CDATA[
-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
-eclipse.preferences.version=1
-org.eclipse.jdt.core.compiler.source=1.8
-org.eclipse.jdt.core.compiler.compliance=1.8
-                        ]]></content>
-							</file>
-							<file>
-								<name>.settings/org.eclipse.core.resources.prefs</name>
-								<content>
-									<![CDATA[
-                                eclipse.preferences.version=1
-                                encoding/<project>=UTF-8
-                                ]]>
-								</content>
-							</file>
-						</additionalConfig>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.unidal.maven.plugins</groupId>
@@ -348,32 +432,125 @@ org.eclipse.jdt.core.compiler.compliance=1.8
 						</execution>
 					</executions>
 				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${versions-maven-plugin.version}</version>
+					<configuration>
+						<generateBackupPoms>false</generateBackupPoms>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven-release-plugin.version}</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>pl.project13.maven</groupId>
+					<artifactId>git-commit-id-plugin</artifactId>
+					<version>${git-commit-id-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>revision</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<failOnNoGitDirectory>false</failOnNoGitDirectory>
+						<failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+						<generateGitPropertiesFile>true</generateGitPropertiesFile>
+						<includeOnlyProperties>
+							<includeOnlyProperty>^git.commit.id.abbrev$</includeOnlyProperty>
+							<includeOnlyProperty>^git.commit.id.describe$</includeOnlyProperty>
+							<includeOnlyProperty>^git.branch$</includeOnlyProperty>
+						</includeOnlyProperties>
+					</configuration>
+				</plugin>
+
+				<!-- 资源拷贝 -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.2.0</version>
+					<executions>
+						<execution>
+							<id>copy-resources</id>
+							<!-- here the phase you need -->
+							<phase>validate</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${basedir}/target/extra-resources</outputDirectory>
+								<resources>
+									<resource>
+										<directory>src/non-packaged-resources</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
+
+
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
+
 	<repositories>
 		<repository>
 			<id>central</id>
@@ -386,6 +563,7 @@ org.eclipse.jdt.core.compiler.compliance=1.8
 			<url>http://unidal.org/nexus/content/repositories/releases/</url>
 		</repository>
 	</repositories>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>central</id>
@@ -396,10 +574,7 @@ org.eclipse.jdt.core.compiler.compliance=1.8
 			<url>http://unidal.org/nexus/content/repositories/releases/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	<properties>
-		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-		<deploy.autoRelease>false</deploy.autoRelease>
-	</properties>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
