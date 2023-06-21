@@ -30,14 +30,11 @@
             <groupId>com.dianping.cat</groupId>
             <artifactId>cat-alarm</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.unidal.framework</groupId>
             <artifactId>web-framework</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.unidal.framework</groupId>
@@ -46,6 +43,17 @@
         <dependency>
             <groupId>org.unidal.framework</groupId>
             <artifactId>foundation-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.unidal.framework</groupId>
+            <artifactId>test-framework</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -85,11 +93,7 @@
             <artifactId>jetty</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.unidal.framework</groupId>
-            <artifactId>test-framework</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-email</artifactId>

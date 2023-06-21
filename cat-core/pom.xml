@@ -21,6 +21,8 @@
             <groupId>com.dianping.cat</groupId>
             <artifactId>cat-client</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.unidal.framework</groupId>
             <artifactId>foundation-service</artifactId>
@@ -30,33 +32,39 @@
             <artifactId>web-framework</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.xerial.snappy</groupId>
-            <artifactId>snappy-java</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.unidal.framework</groupId>
             <artifactId>dal-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <optional>true</optional>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.unidal.framework</groupId>
             <artifactId>test-framework</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.xerial.snappy</groupId>
+            <artifactId>snappy-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

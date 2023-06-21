@@ -26,6 +26,8 @@
             <groupId>com.dianping.cat</groupId>
             <artifactId>cat-core</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.unidal.framework</groupId>
             <artifactId>foundation-service</artifactId>
@@ -38,6 +40,12 @@
             <groupId>org.unidal.framework</groupId>
             <artifactId>dal-jdbc</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.unidal.framework</groupId>
+            <artifactId>test-framework</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -53,11 +61,7 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.unidal.framework</groupId>
-            <artifactId>test-framework</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
