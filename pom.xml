@@ -42,7 +42,6 @@
 		<module>cat-hadoop</module>
 		<module>cat-home</module>
 		<module>cat-alarm</module>
-        <module>cat-server</module>
     </modules>
 
 	<properties>
@@ -186,7 +185,7 @@
 			<dependency>
 				<groupId>io.netty</groupId>
 				<artifactId>netty-all</artifactId>
-				<version>4.1.50.Final</version>
+				<version>4.1.93.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.code.gson</groupId>
