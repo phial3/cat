@@ -1,0 +1,10 @@
+server:
+  port: 8180
+
+spring:
+  profiles:
+    active:
+
+logging:
+  level:
+    root: debug

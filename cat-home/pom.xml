@@ -59,6 +59,8 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
@@ -161,11 +163,10 @@
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
                 <includes>
                     <include>**/*</include>
                 </includes>
-
             </resource>
         </resources>
 
