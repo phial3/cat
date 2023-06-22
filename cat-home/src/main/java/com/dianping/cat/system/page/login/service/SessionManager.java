@@ -104,7 +104,6 @@ public class SessionManager implements ISessionManager<Session, Token, Credentia
 			break;
 		case ADMIN_PWD:
 			final String p = m_provider.getProperty("CAT_ADMIN_PWD", "admin");
-
 			tokenCreator = new Function<Credential, Token>() {
 				@Override
 				public Token apply(Credential credential) {
@@ -118,6 +117,8 @@ public class SessionManager implements ISessionManager<Session, Token, Credentia
 
 			};
 			break;
+			default:
+				throw new IllegalArgumentException("unknown AuthType:" + type);
 		}
 	}
 
