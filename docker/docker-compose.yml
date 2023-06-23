@@ -1,4 +1,4 @@
-version: '2.2'
+version: '3'
 
 networks:
   cat:
@@ -6,7 +6,7 @@ networks:
 
 services:
   cat:
-    image: meituaninc/cat:3.0.1
+    image: cat:4.0-RC1
     container_name: cat
 
     ######## build from Dockerfile ###########
@@ -22,13 +22,12 @@ services:
       - MYSQL_USERNAME=root
       - MYSQL_PASSWD=
       - MYSQL_SCHEMA=cat
-      # 必须设置成你的机器IP地址
-      # - SERVER_IP=YOUR IP
+      # 必须设置成你的宿主机IP地址
+      - SERVER_IP=127.0.0.1
     volumes:
       # 默认127.0.0.1，可以修改为自己真实的服务器集群地址
-      - "./client.xml:/data/appdatas/cat/client.xml"
-      # 默认使用环境变量设置。可以启用本注解，并修改为自己的配置
-#      - "./datasources.xml:/data/appdatas/cat/datasources.xml"
+      - "/Users/admin/.cat/:/data/appdatas/cat"
+      - ".logs/:/data/applogs/cat"
     command: /bin/sh -c './datasources.sh && catalina.sh run'
     links:
       - mysql
@@ -43,7 +42,7 @@ services:
   # disable this if you have your own mysql
   mysql:
     container_name: cat-mysql
-    image: mysql:5.7.37
+    image: mysql:5.7.40
     # expose 3306 to client (navicat)
     ports:
        - 3306:3306

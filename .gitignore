@@ -32,3 +32,4 @@ _book
 *.epub
 *.mobi
 *.pdf
+/docker/mysql/

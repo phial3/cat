@@ -26,7 +26,6 @@ import org.mortbay.jetty.Handler;
 import org.mortbay.jetty.webapp.WebAppContext;
 import org.mortbay.servlet.GzipFilter;
 import org.unidal.test.jetty.JettyServer;
-
 @RunWith(JUnit4.class)
 public class TestServer extends JettyServer {
 	public static void main(String[] args) throws Exception {
