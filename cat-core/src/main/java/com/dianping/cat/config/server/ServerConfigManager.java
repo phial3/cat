@@ -539,7 +539,7 @@ public class ServerConfigManager implements LogEnabled, Initializable {
 		m_logger.info("CAT server is running with job," + isJobMachine());
 
 		if (m_server != null) {
-			m_logger.info(m_server.toString());
+			m_logger.info("CAT Server: \n" + m_server.toString());
 
 			if (isLocalMode()) {
 				m_threadPool = Threads.forPool().getFixedThreadPool("Cat-ModelService", 5);

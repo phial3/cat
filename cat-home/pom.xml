@@ -249,7 +249,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <version>3.3.2</version>
                 <configuration>
                     <warName>${project.artifactId}</warName>
                     <webResources>
@@ -278,18 +278,12 @@
                     <stopPort>9998</stopPort>
                     <war>${basedir}/target/cat-home.war</war>
                     <httpConnector>
-                        <port>8080</port>
+                        <port>2281</port>
                     </httpConnector>
                     <webAppConfig>
                         <contextPath>/</contextPath>
                         <defaultsDescriptor>src/main/webapp/WEB-INF/web.xml</defaultsDescriptor>
                     </webAppConfig>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.ServerConnector">
-                            <port>2281</port>
-                            <maxIdleTime>500000</maxIdleTime>
-                        </connector>
-                    </connectors>
                 </configuration>
             </plugin>
         </plugins>

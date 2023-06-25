@@ -85,8 +85,8 @@ public class DomainFilter implements Filter {
 					String newValue = buildNewCookie(domain, value);
 
 					if (newValue != null) {
+						// 在cookie值中不能使用分号（;）、逗号（,）、等号（=）以及空格，否则会出现异常
 						Cookie c = new Cookie(DOMAIN, newValue);
-
 						c.setMaxAge(EXPIRY);
 						httpResponse.addCookie(c);
 					}
