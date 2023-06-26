@@ -75,10 +75,6 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>cat-servlet</servlet-name>
-		<url-pattern>/cat</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
 		<servlet-name>mvc-servlet</servlet-name>
 		<url-pattern>/r/*</url-pattern>
 	</servlet-mapping>
