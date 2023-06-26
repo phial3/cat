@@ -30,6 +30,7 @@
 		<url>https://github.com/dianping/cat</url>
 		<tag>${project.version}</tag>
 	</scm>
+
 	<modules>
 		<module>cat-client</module>
 		<module>cat-core</module>
@@ -38,8 +39,18 @@
 		<module>cat-home</module>
 		<module>cat-alarm</module>
 	</modules>
+
 	<dependencyManagement>
 		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.unidal.webres/base -->
+			<dependency>
+				<groupId>org.unidal.webres</groupId>
+				<artifactId>base</artifactId>
+				<version>1.2.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>com.dianping.cat</groupId>
 				<artifactId>cat-client</artifactId>
@@ -65,31 +76,41 @@
 				<artifactId>cat-alarm</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
+
 			<dependency>
 				<groupId>org.unidal.framework</groupId>
 				<artifactId>dal-jdbc</artifactId>
-				<version>2.4.0</version>
+				<version>3.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.unidal.framework</groupId>
 				<artifactId>foundation-service</artifactId>
-				<version>2.5.0</version>
+				<version>3.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.unidal.framework</groupId>
 				<artifactId>web-framework</artifactId>
-				<version>2.4.0</version>
+				<version>3.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.unidal.framework</groupId>
 				<artifactId>test-framework</artifactId>
-				<version>2.4.0</version>
+				<version>3.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.unidal.webres</groupId>
 				<artifactId>WebResServer</artifactId>
 				<version>1.2.1</version>
 			</dependency>
+
+
+			<dependency>
+				<groupId>org.codehaus.plexus</groupId>
+				<artifactId>plexus-utils</artifactId>
+				<version>3.0.24</version>
+			</dependency>
+
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -134,7 +155,7 @@
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
-				<version>5.1.20</version>
+				<version>8.0.29</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.hadoop</groupId>
@@ -164,7 +185,7 @@
 	        <dependency>
 	            <groupId>com.alibaba</groupId>
 	            <artifactId>fastjson</artifactId>
-				<version>1.2.47</version>
+				<version>1.2.83</version>
 			</dependency>
 			<dependency>
 			    <groupId>commons-codec</groupId>
@@ -189,15 +210,12 @@
 			<dependency>
          		<groupId>org.freemarker</groupId>
          		<artifactId>freemarker</artifactId>
-         		<version>2.3.9</version>
-      		</dependency>
-			<dependency>
-         		<groupId>com.mchange.v2</groupId>
-         		<artifactId>c3p0</artifactId>
-         		<version>0.9.5.1</version>
+         		<version>2.3.32</version>
       		</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+
 	<profiles>
 		<profile>
 			<id>ossrh</id>
@@ -232,12 +250,14 @@
 			</build>
 		</profile>
 	</profiles>
+
+
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>3.8.1</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
@@ -337,6 +357,8 @@ org.eclipse.jdt.core.compiler.compliance=1.7
 			</plugin>
 		</plugins>
 	</build>
+
+
 	<repositories>
 		<repository>
 			<id>central</id>

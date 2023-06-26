@@ -69,10 +69,7 @@ public class PeriodTask implements Task, LogEnabled {
 
 				if (m_queueOverflow % (10 * CatConstants.ERROR_COUNT) == 0) {
 					String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(m_analyzer.getStartTime()));
-
-					m_logger
-											.warn(m_analyzer.getClass().getSimpleName() + " queue overflow number " + m_queueOverflow	+ " analyzer time:"
-																	+ date);
+					m_logger.warn(m_analyzer.getClass().getSimpleName() + " queue overflow number " + m_queueOverflow	+ " analyzer time:" + date);
 				}
 			}
 			return result;
